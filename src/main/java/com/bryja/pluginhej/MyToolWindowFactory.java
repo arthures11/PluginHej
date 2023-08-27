@@ -32,7 +32,6 @@ public class MyToolWindowFactory implements ToolWindowFactory {
     }
 
     private String[] listProjectFiles(Project project) {
-        // Retrieve a list of project files (VirtualFiles) and convert them to strings.
         VirtualFile[] files = project.getBaseDir().getChildren();
         String[] fileNames = new String[files.length];
         for (int i = 0; i < files.length; i++) {
@@ -42,7 +41,6 @@ public class MyToolWindowFactory implements ToolWindowFactory {
     }
 
     private void openSelectedFile(Project project, String fileName) {
-        // Open the selected file in the editor.
         VirtualFile file = project.getBaseDir().findChild(fileName);
         if (file != null) {
             FileEditorManager.getInstance(project).openFile(file, true);
@@ -63,18 +61,15 @@ class MyFileChangeListener extends VirtualFileAdapter {
 
     @Override
     public void fileCreated(@NotNull VirtualFileEvent event) {
-        // Refresh the list when a file is created.
         fileList.setListData(listProjectFiles(project));
     }
 
     @Override
     public void fileDeleted(@NotNull VirtualFileEvent event) {
-        // Refresh the list when a file is deleted.
         fileList.setListData(listProjectFiles(project));
     }
 
     private String[] listProjectFiles(Project project) {
-        // Retrieve a list of project files (VirtualFiles) and convert them to strings.
         VirtualFile[] files = project.getBaseDir().getChildren();
         String[] fileNames = new String[files.length];
         for (int i = 0; i < files.length; i++) {
