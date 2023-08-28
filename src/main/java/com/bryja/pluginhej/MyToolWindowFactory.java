@@ -19,16 +19,25 @@ public class MyToolWindowFactory implements ToolWindowFactory {
     @Override
     public void createToolWindowContent(Project project, ToolWindow toolWindow) {
         JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.add(new JLabel("witamy po lewej stronie!"));
+
+//        ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
+//        Content content = contentFactory.createContent(panel, "", false);
+//        toolWindow.getContentManager().addContent(content);
+//
+//        JList<String> fileList = new JList<>(listProjectFiles(project));
+//        fileList.addListSelectionListener(e -> openSelectedFile(project, fileList.getSelectedValue()));
+//        VirtualFileManager.getInstance().addVirtualFileListener(new MyFileChangeListener(fileList, project));
+//        panel.add(new JScrollPane(fileList));
+
+        JList<String> fileList = new JList<>(listProjectFiles(project));
+        fileList.addListSelectionListener(e -> openSelectedFile(project, fileList.getSelectedValue()));
+        panel.add(new JScrollPane(fileList));
 
         ContentFactory contentFactory = ContentFactory.SERVICE.getInstance();
         Content content = contentFactory.createContent(panel, "", false);
         toolWindow.getContentManager().addContent(content);
-
-        JList<String> fileList = new JList<>(listProjectFiles(project));
-        fileList.addListSelectionListener(e -> openSelectedFile(project, fileList.getSelectedValue()));
-        VirtualFileManager.getInstance().addVirtualFileListener(new MyFileChangeListener(fileList, project));
-        panel.add(new JScrollPane(fileList));
     }
 
     private String[] listProjectFiles(Project project) {
