@@ -94,17 +94,14 @@ public class MyToolWindowFactory implements ToolWindowFactory {
         VirtualFile baseDir = pr.getBaseDir();
          root = new DefaultMutableTreeNode(new TreeNodeData(baseDir.getName(), baseDir));
 
-        // Populate the tree structure
         populateTree(root, baseDir);
 
          tree = new JTree(new DefaultTreeModel(root));
         tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 
-        // Set custom renderer to display icons
         DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
         tree.setCellRenderer(renderer);
 
-        // Add a mouse listener to open files on double-click
         tree.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 if (evt.getClickCount() == 2) {
