@@ -33,6 +33,11 @@
             <add-to-group group-id="MainMenu" anchor="last"/>
             <action id="Myplugin.Textboxes" class="com.bryja.pluginhej.HelloAction" text="Hello" description="Says hello"/>
         </group>
+
+            <action id="IkonkaAction" class="com.bryja.pluginhej.IkonkaAction" text="ikonka" description="Description">
+                <add-to-group group-id="MainMenu" anchor="first"/>
+            </action>
+
     </actions>
 
 </idea-plugin>

@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("org.jetbrains.intellij") version "1.8.0"
+
 }
 
 group = "com.bryja"
@@ -19,6 +20,9 @@ intellij {
     plugins.set(listOf(/* Plugin Dependencies */))
 }
 
+
+
+
 tasks {
     // Set the JVM compatibility versions
     withType<JavaCompile> {
@@ -28,7 +32,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("213")
-        untilBuild.set("233.*")
+        untilBuild.set("253.*")
     }
 
     signPlugin {
@@ -40,4 +44,6 @@ tasks {
     publishPlugin {
         token.set(System.getenv("PUBLISH_TOKEN"))
     }
+
 }
+
